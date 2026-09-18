@@ -341,7 +341,8 @@
 };
 
 &usb_host0_xhci {
-	dr_mode = "host";
+	dr_mode = "otg";
+	extcon = <&u2phy0>;
 	status = "okay";
 };
 
