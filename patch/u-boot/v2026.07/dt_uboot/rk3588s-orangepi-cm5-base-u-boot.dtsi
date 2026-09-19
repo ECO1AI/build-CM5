@@ -1,0 +1,31 @@
+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+
+#include "rk3588s-u-boot.dtsi"
+
+/*
+ * The SoC-generic rk3588s-u-boot.dtsi already lists &sdhci in
+ * u-boot,spl-boot-order and marks it (and its pinctrl deps) bootph-*.
+ * Orange Pi CM5 has no board file upstream, so this repo borrows Orange
+ * Pi 5's mainline config - and Orange Pi 5's own -u-boot.dtsi overrides
+ * u-boot,spl-boot-order to drop &sdhci entirely (that board has no eMMC
+ * to prioritize). CM5 boots from eMMC, so restore it here, first in the
+ * order since this is a compute module with eMMC as primary storage.
+ */
+/ {
+	chosen {
+		u-boot,spl-boot-order = "same-as-spl", &sdhci, &sdmmc;
+	};
+};
+
+&sdhci {
+	bootph-pre-ram;
+	bootph-some-ram;
+	mmc-hs200-1_8v;
+	status = "okay";
+};
+
+&sdmmc {
+	bootph-pre-ram;
+	bootph-some-ram;
+	status = "okay";
+};
