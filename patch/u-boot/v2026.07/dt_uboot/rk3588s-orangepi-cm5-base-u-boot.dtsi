@@ -17,24 +17,9 @@
 	};
 };
 
-/*
- * Neither this repo's kernel dts nor upstream's rk3588s-orangepi-cm5.dtsi
- * model a vqmmc-supply/vmmc-supply regulator for &sdhci (upstream even
- * notes "Can't be verified due to missing schematics for the CM5" on the
- * power rails right above it) - there's no controllable rail behind the
- * mmc-hs400-1_8v / mmc-hs400-enhanced-strobe signaling the base .dtsi
- * declares. SPL's UHS voltage-switch handshake for that signaling is
- * exactly what's timing out ("Card did not respond to voltage select!
- * -110"). Drop those signaling properties for the SPL stage only, so
- * SPL falls back to a plain (non-UHS) init instead of waiting on an
- * electrical handshake that may not exist on this board. The kernel-side
- * dts is untouched, so Linux still negotiates full HS400 once booted.
- */
 &sdhci {
 	bootph-pre-ram;
 	bootph-some-ram;
-	/delete-property/ mmc-hs400-1_8v;
-	/delete-property/ mmc-hs400-enhanced-strobe;
 	status = "okay";
 };
 
