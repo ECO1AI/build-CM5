@@ -8,12 +8,14 @@
  * Orange Pi CM5 has no board file upstream, so this repo borrows Orange
  * Pi 5's mainline config - and Orange Pi 5's own -u-boot.dtsi overrides
  * u-boot,spl-boot-order to drop &sdhci entirely (that board has no eMMC
- * to prioritize). CM5 boots from eMMC, so restore it here, first in the
- * order since this is a compute module with eMMC as primary storage.
+ * to prioritize). CM5 boots from eMMC, so restore it here - after
+ * &sdmmc, so an inserted SD card takes priority over eMMC (matching
+ * this repo's other eMMC-capable boards, e.g. easepi-r2), and eMMC is
+ * tried last as the always-present fallback.
  */
 / {
 	chosen {
-		u-boot,spl-boot-order = "same-as-spl", &sdhci, &sdmmc;
+		u-boot,spl-boot-order = "same-as-spl", &sdmmc, &sdhci;
 	};
 };
 
