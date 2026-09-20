@@ -37,7 +37,7 @@ rockchip (Rockchip)
   pwm0-m0/m1/m2, pwm1-m0/m1/m2, pwm2-m1, pwm3-m0/m1/m2/m3, pwm5-m2, pwm6-m0/m2,
   pwm7-m0/m3, pwm8-m0, pwm10-m0, pwm11-m0/m1, pwm12-m0, pwm13-m0/m2, pwm14-m0/m1/m2,
   pwm15-m0/m1/m2/m3, uart1-m1, uart3-m1, uart4-m2, uart6-m1, uart7-m2, uart8-m1,
-  hinlink-h88k-240x135-lcd
+  hinlink-h88k-240x135-lcd, orangepi-cm5-usb3-otg
 
 ### Overlay details:
 
@@ -259,6 +259,16 @@ Activates hdmi_receiver_cma and hdmi_receiver nodes for HDMI-in capture.
 ### rockchip-rk3588-i2c8-m2
 
 Activates I2C8 on RK3588 mux mode 2 (i2c8m2_xfer pins).
+
+### rockchip-rk3588s-orangepi-cm5-usb3-otg
+
+Switches Orange Pi CM5's USB3 host0 port from host (default) to
+peripheral mode. The physical connector is a fixed USB3.0 Type-A
+receptacle with no CC/SBU/ID lines, so there is no hardware role
+detection on this port - it always boots to host unless this overlay
+is applied. Intended for testing USB gadget/device-mode functionality.
+The role can also be switched at runtime without this overlay via
+/sys/class/usb_role/.../role; this only changes the boot-time default.
 
 ### rockchip-rk3588-rkvenc-overlay
 

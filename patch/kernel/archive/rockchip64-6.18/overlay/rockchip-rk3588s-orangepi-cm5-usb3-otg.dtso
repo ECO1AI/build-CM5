@@ -1,0 +1,25 @@
+//Switch Orange Pi CM5's USB3 host0 port from host to OTG/peripheral mode.
+//
+//Default is host: the physical connector is a fixed USB3.0 Type-A
+//receptacle (VBUS/D+/D-/SSTX/SSRX only, per the board schematic - no
+//CC, SBU or ID lines), so there is no hardware role-detection signal on
+//this port at all. usb_host0_xhci already runs with dr_mode="otg" and
+//usb-role-switch so the role is software-selectable
+//(/sys/class/usb_role/.../role); this overlay just flips the boot-time
+//default from host to peripheral, e.g. to test USB gadget functions.
+//Switching role at runtime without this overlay works the same way via
+//that sysfs file - this only changes what it defaults to at boot.
+
+/dts-v1/;
+/plugin/;
+
+/ {
+	compatible = "xunlong,orangepi-cm5-carrier", "xunlong,orangepi-cm5", "rockchip,rk3588s";
+
+	fragment@0 {
+		target = <&usb_host0_xhci>;
+		__overlay__ {
+			role-switch-default-mode = "peripheral";
+		};
+	};
+};
