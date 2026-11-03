@@ -124,6 +124,7 @@
 &pd_gpu {
 	domain-supply = <&vdd_gpu_s0>;
 };
+
 &pd_npu {
 	domain-supply = <&vdd_npu_s0>;
 };
@@ -157,7 +158,6 @@
 &rknn_mmu_2 {
 	status = "okay";
 };
-
 
 &sdhci {
 	bus-width = <8>;
