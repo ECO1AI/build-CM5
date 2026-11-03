@@ -315,6 +315,11 @@
 	status = "okay";
 };
 
+&saradc {
+	vref-supply = <&avcc_1v8_s0>;
+	status = "okay";
+	};
+
 &sdmmc {
 	bus-width = <4>;
 	cap-sd-highspeed;
