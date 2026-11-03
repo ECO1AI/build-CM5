@@ -396,10 +396,14 @@ The overlay also disables any card in the E-key slot.
 Use the overlay only when both M.2 slots are empty.
 An unused mainline PCIe PHY draws about 0.6 W.
 **********************************
-Details for OrangePi CM5 overlays  (28 10 2026):
+Details for OrangePi CM5 overlays  (03 11 2026):
 
 ### rockchip-rk3588-orangepi-cm5-cam1
 Enables CAM1 CSI interface.
+
+### rockchip-rk3588-ir-m0
+Enables a GPIO IR receiver on GPIO0_D0 (PWM7_IR_M0).
+Do not use together with pwm7-m0.
 
 **********************************
 Details for Orange Pi 5 Max overlays  (29 Oct 2026):

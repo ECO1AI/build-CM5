@@ -33,7 +33,7 @@ rockchip (Rockchip)
   dshanpi-r1-disable-pcie
 
 **RK3588:**
-- can0-m0/m1, can1-m0/m1, can2-m0/m1, fanctrl, hdmirx, i2c8-m2, nanopc-t6-mmc-frequency,
+- can0-m0/m1, can1-m0/m1, can2-m0/m1, fanctrl, hdmirx, i2c8-m2, ir-m0, nanopc-t6-mmc-frequency,
   nanopi-m6-spi-nor-flash, nanopi-m6-display-dsi1-yx35, odroidm2-display-vu8s,
   odroidm2-weather-board-zero, rkvenc-overlay, rock-5-itx-pwm-fan, sata0, sata1, sata2,
   pwm0-m0/m1/m2, pwm1-m0/m1/m2, pwm2-m1, pwm3-m0/m1/m2/m3, pwm5-m2, pwm6-m0/m2,
@@ -298,6 +298,12 @@ Activates CAN0/1/2 on RK3588 with selectable mux modes.
 
 **can2-m0:** mux mode 0, pins (RX, TX): GPIO3_C4, GPIO3_C5
 **can2-m1:** mux mode 1, pins (RX, TX): GPIO0_D4, GPIO0_D5
+
+### rockchip-rk3588-ir-m0
+
+Enables a GPIO IR receiver on GPIO0_D0 (PWM7_IR_M0).
+Do not use together with pwm7-m0.
+
 
 ### rockchip-rk3588-fanctrl
 

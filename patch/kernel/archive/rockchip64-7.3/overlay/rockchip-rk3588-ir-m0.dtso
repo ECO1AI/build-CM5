@@ -1,0 +1,40 @@
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/pinctrl/rockchip.h>
+
+/ {
+	metadata {
+		title = "Enable IR receiver on PWM7_IR_M0";
+		compatible = "rockchip,rk3588s", "rockchip,rk3588";
+		category = "misc";
+		exclusive = "GPIO0_D0";
+		description = "Enable a GPIO IR receiver on GPIO0_D0 (PWM7_IR_M0).";
+	};
+
+	fragment@0 {
+		target = <&pinctrl>;
+
+		__overlay__ {
+			ir-receiver-m0 {
+				ir_receiver_m0_pin: ir-receiver-m0-pin {
+					rockchip,pins = <0 RK_PD0 RK_FUNC_GPIO &pcfg_pull_none>;
+				};
+			};
+		};
+	};
+
+	fragment@1 {
+		target-path = "/";
+
+		__overlay__ {
+			ir-receiver-m0 {
+				compatible = "gpio-ir-receiver";
+				gpios = <&gpio0 RK_PD0 GPIO_ACTIVE_LOW>;
+				pinctrl-names = "default";
+				pinctrl-0 = <&ir_receiver_m0_pin>;
+			};
+		};
+	};
+};
