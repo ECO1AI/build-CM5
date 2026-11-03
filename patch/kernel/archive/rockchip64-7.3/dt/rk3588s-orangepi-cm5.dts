@@ -231,7 +231,7 @@
 		pinctrl-0 = <&rgmii_phy_pin>;
 		reset-assert-us = <20000>;
 		reset-deassert-us = <100000>;
-		reset-gpios = <&gpio3 RK_PB2 GPIO_ACTIVE_LOW>;
+		reset-gpios = <&gpio1 RK_PC1 GPIO_ACTIVE_LOW>;
 	};
 };
 
@@ -265,7 +265,7 @@
 
 	ethernet {
 		rgmii_phy_pin: rgmii-phy-pin {
-			rockchip,pins = <3 RK_PB2 RK_FUNC_GPIO &pcfg_pull_none>;
+			rockchip,pins = <1 RK_PC1 RK_FUNC_GPIO &pcfg_pull_none>;
 		};
 	};
 
